@@ -10,22 +10,15 @@ public class BasePage {
     protected static final String START_PAGE_URL = "https://stellarburgers.nomoreparties.site/";
 
     public void waitForVisibilityOfElement(WebDriver driver, By element) {
-        new WebDriverWait(driver, 5)
+
+        new WebDriverWait(driver,10)
                 .until(ExpectedConditions.visibilityOfElementLocated(element));
+
     }
 
     public void scrollToElement(WebDriver driver, By startOrderButtonBy) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(startOrderButtonBy));
-    }
-
-    public boolean checkPresenceToken(WebDriver driver) {
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        String jwt = (String) js.executeScript("return window.localStorage.getItem('accessToken');");
-
-        return jwt == null;
-
     }
 
     public String getPresenceToken(WebDriver driver) {

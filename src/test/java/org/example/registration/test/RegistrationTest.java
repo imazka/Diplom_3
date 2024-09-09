@@ -1,14 +1,17 @@
 package org.example.registration.test;
 
+import io.qameta.allure.Description;
 import org.example.BaseTest;
+import org.example.page.page.LoginPageObject;
+import org.example.page.page.RegistrationPageObject;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegistrationTest extends BaseTest {
 
-    //регистрация с позитивным сценарием
     @Test
+    @Description("регистрация с позитивным сценарием")
     public void userRegistrationTest() {
 
         startPageObject.openStartPage(driver);
@@ -19,13 +22,13 @@ public class RegistrationTest extends BaseTest {
         registrationPageObject.setTextFields(driver, user);
         registrationPageObject.clickRegistrationButton(driver);
 
-        waitForVisibilityOfElement(driver, loginPageObject.ENTER_BUTTON);
-        assertTrue(driver.findElement(loginPageObject.ENTER_BUTTON).isDisplayed());
+        waitForVisibilityOfElement(driver, LoginPageObject.ENTER_BUTTON);
+        assertTrue(driver.findElement(LoginPageObject.ENTER_BUTTON).isDisplayed());
 
     }
 
-    //регистрация с невалидеым паролем
     @Test
+    @Description("регистрация с невалидеым паролем")
     public void userRegWithIncorrectPassTest() {
 
         loginPageObject.openLoginPage(driver);
@@ -35,8 +38,8 @@ public class RegistrationTest extends BaseTest {
         registrationPageObject.setTextFields(driver, user);
         registrationPageObject.clickRegistrationButton(driver);
 
-        waitForVisibilityOfElement(driver, registrationPageObject.getINCORRECT_PASS_MESSAGE());
-        assertTrue(driver.findElement(registrationPageObject.getINCORRECT_PASS_MESSAGE()).isDisplayed());
+        waitForVisibilityOfElement(driver, RegistrationPageObject.INCORRECT_PASS_MESSAGE);
+        assertTrue(driver.findElement(RegistrationPageObject.INCORRECT_PASS_MESSAGE).isDisplayed());
 
     }
 
